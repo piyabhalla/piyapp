@@ -44,11 +44,11 @@ Run npm run dev to launch the development server.
 
 1. Secure User Authentication
 
-•Implemented using Firebase Auth
+   •Implemented using Firebase Auth
 
-•Supports login, signup, and logout
+   •Supports login, signup, and logout
 
-•Additional features:
+   •Additional features:
 
   Show/hide password toggle
   Forgot password reset via email
