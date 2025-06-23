@@ -14,7 +14,6 @@ import {
   getDocs,
 } from 'firebase/firestore';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { useRouter } from 'next/navigation';
 
 export default function FeedPage() {
   const [user, setUser] = useState(null);
@@ -22,7 +21,6 @@ export default function FeedPage() {
   const [postText, setPostText] = useState('');
   const [postImage, setPostImage] = useState(null);
   const [posts, setPosts] = useState([]);
-  const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -105,7 +103,7 @@ export default function FeedPage() {
 
   return (
     <div style={{ padding: '2rem', backgroundColor: '#f0f4f8', minHeight: '100vh' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
         <button
           onClick={handleLogout}
           style={{
@@ -122,7 +120,7 @@ export default function FeedPage() {
         </button>
 
         <button
-          onClick={() => router.push('/profile')}
+          onClick={() => (window.location.href = '/profile')}
           style={{
             backgroundColor: '#10b981',
             color: '#fff',
