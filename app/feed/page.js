@@ -7,6 +7,7 @@ import {
   onSnapshot,
   serverTimestamp,
   updateDoc,
+  deleteDoc,
   doc,
   increment,
   query,
@@ -22,28 +23,24 @@ export default function FeedPage() {
   const [postImage, setPostImage] = useState(null);
   const [posts, setPosts] = useState([]);
 
+  // ✅ Get logged-in user + fetch name from Firestore
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        setUser(user);
-        let fetchedName = '';
-
-        const q = query(collection(db, 'profiles'), where('email', '==', user.email));
+    const unsubscribe = onAuthStateChanged(auth, async (u) => {
+      if (u) {
+        setUser(u);
+        const q = query(collection(db, 'profiles'), where('email', '==', u.email));
         const snapshot = await getDocs(q);
-
         if (!snapshot.empty) {
-          fetchedName = snapshot.docs[0].data().name;
+          setName(snapshot.docs[0].data().name);
+        } else {
+          setName(u.displayName || u.email || 'Anonymous');
         }
-
-        setName(fetchedName || user.displayName || user.email || 'Anonymous');
-      } else {
-        setName('Anonymous');
       }
     });
-
     return () => unsubscribe();
   }, []);
 
+  // ✅ Get live posts
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'posts'), (snapshot) => {
       const allPosts = snapshot.docs.map((doc) => ({
@@ -57,6 +54,7 @@ export default function FeedPage() {
     return () => unsubscribe();
   }, []);
 
+  // ✅ Create a post
   const handlePost = async () => {
     if (!postText.trim() && !postImage) return;
 
@@ -81,6 +79,7 @@ export default function FeedPage() {
       claps: 0,
       timestamp: serverTimestamp(),
       user: name || 'Anonymous',
+      email: user.email, // For delete access
       image: imageUrl,
     });
 
@@ -88,11 +87,19 @@ export default function FeedPage() {
     setPostImage(null);
   };
 
+  // ✅ Clap a post
   const handleClap = async (id) => {
     const postRef = doc(db, 'posts', id);
     await updateDoc(postRef, {
       claps: increment(1),
     });
+  };
+
+  // ✅ Delete post
+  const handleDelete = async (id) => {
+    if (confirm('Are you sure you want to delete this post?')) {
+      await deleteDoc(doc(db, 'posts', id));
+    }
   };
 
   const handleLogout = () => {
@@ -103,39 +110,39 @@ export default function FeedPage() {
 
   return (
     <div style={{ padding: '2rem', backgroundColor: '#f0f4f8', minHeight: '100vh' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
-        <button
-          onClick={handleLogout}
-          style={{
-            backgroundColor: '#ef4444',
-            color: '#fff',
-            border: 'none',
-            padding: '0.6rem 1.2rem',
-            borderRadius: '6px',
-            cursor: 'pointer',
-            fontWeight: 'bold',
-          }}
-        >
-          🔒 Logout
-        </button>
+      <button
+        onClick={handleLogout}
+        style={{
+          backgroundColor: '#ef4444',
+          color: '#fff',
+          border: 'none',
+          padding: '0.6rem 1.2rem',
+          borderRadius: '6px',
+          cursor: 'pointer',
+          marginBottom: '1.5rem',
+          fontWeight: 'bold',
+        }}
+      >
+        🔒 Logout
+      </button>
 
-        <button
-          onClick={() => (window.location.href = '/profile')}
-          style={{
-            backgroundColor: '#10b981',
-            color: '#fff',
-            border: 'none',
-            padding: '0.6rem 1.2rem',
-            borderRadius: '6px',
-            cursor: 'pointer',
-            fontWeight: 'bold',
-          }}
-        >
-          🙋‍♀ My Profile
-        </button>
-      </div>
+      <button
+        onClick={() => window.location.href = '/profile'}
+        style={{
+          backgroundColor: '#10b981',
+          color: '#fff',
+          marginLeft: '1rem',
+          border: 'none',
+          padding: '0.6rem 1.2rem',
+          borderRadius: '6px',
+          cursor: 'pointer',
+          fontWeight: 'bold',
+        }}
+      >
+        👤 My Profile
+      </button>
 
-      <h2 style={{ fontSize: '1.6rem', color: '#4b0082' }}>✨ What’s on your mind?</h2>
+      <h2 style={{ fontSize: '1.6rem', color: '#4b0082', marginTop: '1rem' }}>✨ What’s on your mind?</h2>
       <textarea
         placeholder="Type something amazing..."
         value={postText}
@@ -202,6 +209,10 @@ export default function FeedPage() {
           <p style={{ fontSize: '0.9rem', color: '#555' }}>
             🕒 {p.timestamp?.seconds ? new Date(p.timestamp.seconds * 1000).toLocaleString() : 'Now'}
           </p>
+          <p style={{ fontSize: '0.9rem', color: '#8b5cf6' }}>
+            👩‍💻 Posted by {p.user || 'Anonymous'}
+          </p>
+
           <button
             onClick={() => handleClap(p.id)}
             style={{
@@ -216,6 +227,24 @@ export default function FeedPage() {
           >
             👏 {p.claps || 0}
           </button>
+
+          {/* Delete Button only if user created this post */}
+          {user?.email === p.email && (
+            <button
+              onClick={() => handleDelete(p.id)}
+              style={{
+                marginLeft: '0.6rem',
+                backgroundColor: '#ef4444',
+                color: '#fff',
+                padding: '0.4rem 0.9rem',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+              }}
+            >
+              🗑 Delete
+            </button>
+          )}
         </div>
       ))}
     </div>
