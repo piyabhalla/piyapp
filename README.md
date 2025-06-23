@@ -1,44 +1,59 @@
-# *PIYAPP* — A Full-Stack Social Media Web App
+✨ PIYAPP — A Full-Stack Social Media Web App
 
-### **Piyapp** is a full-stack simplified social media web application. It allows users to sign up, log in, create and view posts (text and images), like posts (multiple times like Medium's clap), manage personal profiles with avatars or profile image uploads, and delete posts. The app is fully responsive, optimized for both desktop and mobile devices, and integrates real-time features using *Firebase* and *Cloudinary*.
+Piyapp is a full-stack simplified social media web application. It allows users to sign up, log in, create and view posts (text and images), like posts (multiple times like Medium's clap), manage personal profiles with avatars or profile image uploads, and delete posts. The app is fully responsive, optimized for both desktop and mobile devices, and integrates real-time features using Firebase and Cloudinary.
 
-### 🔗 https://piyapp.vercel.app
+🔗 Live Demo: https://piyapp.vercel.app
+
+
 ---
 
-## *➡ Project Setup Instructions*
+🔧 Project Setup Instructions
 
-### 1. *Clone the Repository*
-bash
+1. 📥 Clone the Repository
+
+Open your terminal and run the following commands to clone and enter the project directory:
+
 git clone https://github.com/piyabhalla/piyapp.git
 cd piyapp
 
 
 ---
 
-### 2. *Backend Setup (Firebase + Cloudinary)*
+2. 🔐 Backend Configuration (Firebase + Cloudinary)
 
-*Firebase Configuration:*
-- Go to [Firebase Console](https://console.firebase.google.com)
-- Enable *Email/Password Authentication*
-- Create a *Firestore Database* with:
-  - profiles collection (for user profile info)
-  - posts collection (for user posts)
+✅ Firebase Setup:
 
-*Cloudinary Configuration:*
-- Sign up at [Cloudinary](https://cloudinary.com/)
-- Create an *unsigned upload preset* named:
+Go to Firebase Console
+
+Enable Email/Password Authentication
+
+Create a Firestore Database with the following collections:
+
+profiles — for storing user profile data
+
+posts — for storing user posts and metadata
+
+
+
+🖼 Cloudinary Setup:
+
+Sign up at Cloudinary
+
+Create an unsigned upload preset with the name:
+
 
 piyapppp
 
-- Note your *Cloud Name* (you’ll use it in the upload request)
+Note your Cloud Name — it will be required in the image upload logic.
+
+
 
 ---
 
-### 3. *Environment Variables Setup*
+3. 🛠 Environment Variables Setup
 
-Create a .env.local file inside your root folder and paste this:
+Create a .env.local file in the root directory and paste your Firebase credentials:
 
-env
 NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
@@ -49,78 +64,170 @@ NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 
 ---
 
-### 4. *Install & Run the App Locally*
+4. 🚀 Install & Run the App Locally
 
-*Install dependencies:*
-bash
+Install all dependencies and start the development server:
+
 npm install
-
-
-*Start the development server:*
-bash
 npm run dev
 
+The app will be available locally at http://localhost:3000.
+
 
 ---
 
-## *➡ Technologies Used*
+⚙ Technologies Used
 
-1. *Next.js 15.3.4* – Full-stack React framework  
-2. *React.js* – Component-based UI  
-3. *Firebase Authentication* – User login/signup  
-4. *Firebase Firestore* – Database for users, posts, likes  
-5. *Cloudinary* – Image uploads (posts and profile pictures)  
-6. *Vercel* – Hosting and deployment  
-7. *Git & GitHub* – Version control and collaboration  
-8. *Visual Studio Code (VS Code)* – Code editor  
+1. Next.js 15.3.4 – Full-stack React framework
 
----
 
-## *➡ Key Features Implemented*
+2. React.js – Component-based UI
 
-1. *Secure User Authentication*
-   - Built using Firebase Auth
-   - Login, Signup, Logout functionality
-   - Additional UX features:
-     - Show/hide password toggle  
-     - Forgot password with email reset  
-     - Confirm password validation
 
-2. *User Profile Management*
-   - Users can create and update their profiles
-   - Fields: Name, Bio, Profile Picture (upload or avatar), Gender, Date of Birth
-   - “My Profile” button on feed for direct access
+3. Firebase Authentication – User login/signup
 
-3. *Post Creation with Media Support*
-   - Create posts with text and/or images (uploaded to Cloudinary)
-   - Posts saved with timestamp and poster identity
 
-4. *Global Feed View*
-   - Displays all posts from all users in real-time
-   - Each post shows: content, image (if uploaded), timestamp, poster’s name, claps count
+4. Firebase Firestore – Realtime database
 
-5. *Post Reactions (Claps)*
-   - Medium-style clap button
-   - Users can clap unlimited times (tracked as total count only)
 
-6. *Delete Posts*
-   - Users can delete their own posts from the feed
+5. Cloudinary – Media/image hosting
 
-7. *Avatars*
-   - DiceBear-generated avatars for users who don’t upload profile pictures
 
-8. *Responsive Design*
-   - Optimized UI for mobile and desktop
-   - Clean and user-friendly layout
+6. Vercel – Hosting and CI/CD
 
-9. *Real-Time Updates*
-   - Posts and claps update live using Firestore snapshot listeners
+
+7. Git & GitHub – Version control
+
+
+8. Visual Studio Code – Code editor
+
+
+
 
 ---
 
-## *➡ Limitations / Known Issues*
+🌟 Key Features Implemented
 
-1. Users cannot edit their posts once published  
-2. No email verification after signup  
-3. All posts are public — no user-specific filtering or privacy  
-4. Error alerts are basic and not form-validated in all places
+1. Secure User Authentication
+
+Firebase login, signup, logout
+
+Show/hide password toggle
+
+Forgot password with email reset
+
+Confirm password validation
+
+
+
+2. User Profile Management
+
+Editable profile (name, bio, gender, DOB)
+
+Profile image upload or auto avatar
+
+Direct "My Profile" access from feed
+
+
+
+3. Post Creation with Media Support
+
+Upload text and/or image posts
+
+Cloudinary image hosting
+
+Automatic timestamp and user identity logging
+
+
+
+4. Global Feed View
+
+Real-time post updates across users
+
+Post metadata: content, image, poster name, time, clap count
+
+
+
+5. Post Reactions (Claps)
+
+Unlimited claps per user per post
+
+Medium-style experience
+
+
+
+6. Delete Posts
+
+Post owners can delete their own posts
+
+
+
+7. Avatars
+
+DiceBear avatar fallback for users without uploaded profile pics
+
+
+
+8. Responsive Design
+
+Mobile-first UI with clean layout
+
+
+
+9. Real-Time Updates
+
+Firestore snapshot listeners ensure live syncing of posts and likes
+
+
+
+
+
+---
+
+⚠ Limitations / Known Issues
+
+1. Posts cannot be edited after publishing
+
+
+2. Email verification after signup is not implemented
+
+
+3. No privacy control — all posts are public
+
+
+4. Basic error alerts — lacks full-form validation in all areas
+
+
+
+
+---
+
+📂 Folder Structure
+
+my-social-app-2/
+├── app/
+│   ├── feed/
+│   │   └── page.js
+│   ├── login/
+│   │   └── page.js
+│   ├── profile/
+│   │   └── page.js
+│   ├── signup/
+│   │   └── page.js
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.js
+│   └── page.js
+├── node_modules/
+├── out/
+├── public/
+├── .firebaserc
+├── .gitignore
+├── firebase.js
+├── firebase.json
+├── jsconfig.json
+├── next.config.js
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+└── README.md
