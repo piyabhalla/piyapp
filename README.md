@@ -1,54 +1,56 @@
 # *PIYAPP* — A Full-Stack Social Media Web App
 
-### **Piyapp** is a full-stack simplified social media web application. It allows users to sign up, log in, create and view posts (text and images), like posts (multiple times like Medium's clap), manage personal profiles with avatars or profile image uploads, and delete posts. The app is fully responsive, optimized for both desktop and mobile devices, and integrates real-time features using *Firebase* and *Cloudinary*.
+### [🚀 Live Demo](https://piyapp.vercel.app)
 
-🔗 https://piyapp.vercel.app
+### **Piyapp** is a full-stack simplified social media web application. It allows users to sign up, log in, create and view posts (text and images), like posts (multiple times like Medium's clap), manage personal profiles with avatars or profile image uploads, and delete posts. The app is fully responsive, optimized for both desktop and mobile devices, and integrates real-time features using *Firebase* and *Cloudinary*.
 
 ---
 
 ## *➡ Project Setup Instructions*
 
-1. *Clone the repository*
-   bash
-   git clone https://github.com/piyabhalla/piyapp.git
-   cd piyapp
-   
+### 1. *Clone the Repository*
+bash
+git clone https://github.com/piyabhalla/piyapp.git
+cd piyapp
 
-2. *Install dependencies*
-   bash
-   npm install
-   
 
-3. *Firebase Setup*
-   - Go to [Firebase Console](https://console.firebase.google.com)
-   - Enable *Email/Password Authentication*
-   - Set up *Firestore Database* with:
-     - profiles collection (for user data)
-     - posts collection (for feed posts)
+### 2. *Backend Setup*
+- *Firebase Setup*
+  - Go to [Firebase Console](https://console.firebase.google.com)
+  - Enable *Email/Password Authentication*
+  - Set up *Firestore Database* with two collections:
+    - profiles (for user data)
+    - posts (for user posts)
 
-4. *Cloudinary Setup*
-   - Sign up at [Cloudinary](https://cloudinary.com/)
-   - Create an *unsigned upload preset* with the name:
-     
-     piyapppp
-     
-   - Note your *Cloud Name* for use in image uploads
+- *Cloudinary Setup*
+  - Create a free account at [Cloudinary](https://cloudinary.com)
+  - Create an *unsigned upload preset* with the name:
+    
+    piyapppp
+    
+  - Note your *Cloud Name*
 
-5. *Environment Variables*
-   Create a .env.local file in the root directory and add:
-   env
-   NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
-   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
-   NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
-   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-   NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
-   
+- *Environment Variables*
+  - Create a .env.local file in the root folder
+  - Add the following:
+    env
+    NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+    NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+    NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+    
 
-6. *Run the app locally*
-   bash
-   npm run dev
-   
+### 3. *Frontend Setup*
+bash
+npm install
+
+
+### 4. *Access the App Locally*
+bash
+npm run dev
+
 
 ---
 
