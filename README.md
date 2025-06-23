@@ -124,3 +124,33 @@ npm run dev
 2. No email verification after signup  
 3. All posts are public — no user-specific filtering or privacy  
 4. Error alerts are basic and not form-validated in all places
+
+## ➡ 📁 File Structure
+
+my-social-app-2/
+├── app/
+│   ├── feed/
+│   │   └── page.js
+│   ├── login/
+│   │   └── page.js
+│   ├── profile/
+│   │   └── page.js
+│   ├── signup/
+│   │   └── page.js
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.js
+│   └── page.js
+├── node_modules/
+├── out/
+├── public/
+├── .firebaserc
+├── .gitignore
+├── firebase.js
+├── firebase.json
+├── jsconfig.json
+├── next.config.js
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+└── README.md 
