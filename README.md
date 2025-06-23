@@ -63,20 +63,12 @@ Run npm run dev to launch the development server.
 
    •Fields include:
 
-     →Name
+     Name, Bio, Profile Picture, Gender, Date of Birth,
 
-     →Bio
-
-     →Profile Picture (via Cloudinary)
-
-     →Gender
-
-     →Date of Birth
-
-     →“My Profile” button on feed for direct access
+   •“My Profile” button on feed for direct access
 
 
-3. Post Creation with Media Support
+4. Post Creation with Media Support
 
 Users can publish posts containing:
 
