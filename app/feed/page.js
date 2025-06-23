@@ -21,13 +21,14 @@ export default function FeedPage() {
   const [postText, setPostText] = useState('');
   const [postImage, setPostImage] = useState(null);
   const [posts, setPosts] = useState([]);
+  const [emailNameMap, setEmailNameMap] = useState({});
 
+  // ✅ Get logged-in user + fetch name from Firestore
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setUser(user);
         let fetchedName = '';
-
         const q = query(collection(db, 'profiles'), where('email', '==', user.email));
         const snapshot = await getDocs(q);
 
@@ -44,14 +45,32 @@ export default function FeedPage() {
     return () => unsubscribe();
   }, []);
 
+  // ✅ Fetch all posts and build email:name map
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'posts'), (snapshot) => {
+    const unsubscribe = onSnapshot(collection(db, 'posts'), async (snapshot) => {
       const allPosts = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
+
       const sorted = allPosts.sort((a, b) => b.timestamp?.seconds - a.timestamp?.seconds);
       setPosts(sorted);
+
+      // Extract unique emails
+      const uniqueEmails = [...new Set(sorted.map((p) => p.email))];
+
+      // Fetch profile names
+      const nameMap = {};
+      for (const email of uniqueEmails) {
+        const q = query(collection(db, 'profiles'), where('email', '==', email));
+        const snap = await getDocs(q);
+        if (!snap.empty) {
+          nameMap[email] = snap.docs[0].data().name;
+        } else {
+          nameMap[email] = email;
+        }
+      }
+      setEmailNameMap(nameMap);
     });
 
     return () => unsubscribe();
@@ -81,6 +100,7 @@ export default function FeedPage() {
       claps: 0,
       timestamp: serverTimestamp(),
       user: name || 'Anonymous',
+      email: user?.email || '',
       image: imageUrl,
     });
 
@@ -185,9 +205,6 @@ export default function FeedPage() {
           )}
           <p style={{ fontSize: '0.9rem', color: '#555' }}>
             🕒 {p.timestamp?.seconds ? new Date(p.timestamp.seconds * 1000).toLocaleString() : 'Now'}
-          </p>
-          <p style={{ fontSize: '0.9rem', color: '#8b5cf6' }}>
-            👩‍💻 Posted by Piya Bhalla
           </p>
           <button
             onClick={() => handleClap(p.id)}
