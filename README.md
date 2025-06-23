@@ -1,9 +1,8 @@
 # *PIYAPP* — A Full-Stack Social Media Web App
 
-### [🚀 Live Demo](https://piyapp.vercel.app)
-
 ### **Piyapp** is a full-stack simplified social media web application. It allows users to sign up, log in, create and view posts (text and images), like posts (multiple times like Medium's clap), manage personal profiles with avatars or profile image uploads, and delete posts. The app is fully responsive, optimized for both desktop and mobile devices, and integrates real-time features using *Firebase* and *Cloudinary*.
 
+### 🔗 https://piyapp.vercel.app
 ---
 
 ## *➡ Project Setup Instructions*
@@ -14,40 +13,50 @@ git clone https://github.com/piyabhalla/piyapp.git
 cd piyapp
 
 
-### 2. *Backend Setup*
-- *Firebase Setup*
-  - Go to [Firebase Console](https://console.firebase.google.com)
-  - Enable *Email/Password Authentication*
-  - Set up *Firestore Database* with two collections:
-    - profiles (for user data)
-    - posts (for user posts)
+---
 
-- *Cloudinary Setup*
-  - Create a free account at [Cloudinary](https://cloudinary.com)
-  - Create an *unsigned upload preset* with the name:
-    
-    piyapppp
-    
-  - Note your *Cloud Name*
+### 2. *Backend Setup (Firebase + Cloudinary)*
 
-- *Environment Variables*
-  - Create a .env.local file in the root folder
-  - Add the following:
-    env
-    NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
-    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
-    NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
-    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-    NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
-    
+*Firebase Configuration:*
+- Go to [Firebase Console](https://console.firebase.google.com)
+- Enable *Email/Password Authentication*
+- Create a *Firestore Database* with:
+  - profiles collection (for user profile info)
+  - posts collection (for user posts)
 
-### 3. *Frontend Setup*
+*Cloudinary Configuration:*
+- Sign up at [Cloudinary](https://cloudinary.com/)
+- Create an *unsigned upload preset* named:
+
+piyapppp
+
+- Note your *Cloud Name* (you’ll use it in the upload request)
+
+---
+
+### 3. *Environment Variables Setup*
+
+Create a .env.local file inside your root folder and paste this:
+
+env
+NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+
+
+---
+
+### 4. *Install & Run the App Locally*
+
+*Install dependencies:*
 bash
 npm install
 
 
-### 4. *Access the App Locally*
+*Start the development server:*
 bash
 npm run dev
 
