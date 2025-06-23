@@ -117,16 +117,9 @@ export default function LoginPage() {
         </span>
       </p>
 
-      <p style={{ fontSize: '0.9rem', textAlign: 'center', marginTop: '1rem' }}>
+      <p style={{ fontSize: '0.9rem', textAlign: 'center' }}>
         New user?{' '}
-        <a
-          href="/signup"
-          style={{
-            color: '#8b5cf6',
-            fontWeight: 'bold',
-            textDecoration: 'underline',
-          }}
-        >
+        <a href="/signup" style={{ color: '#3b82f6', fontWeight: '500' }}>
           Sign up here
         </a>
       </p>
