@@ -102,7 +102,7 @@ Run npm run dev to launch the development server.
 
 ## **➡️Limitations / Known Issues:**
 
-1. Users cannot edit or delete their posts after publishing.
+1. Users cannot edit their posts after publishing.
 
 2. No email verification is implemented post sign-up.
 
