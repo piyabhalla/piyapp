@@ -38,3 +38,90 @@ Run npm run dev to launch the development server.
 7. Git & GitHub – Version control and code collaboration
 
 8. Visual Studio Code (VS Code) – Code editor
+
+
+**➡️Key Features Implemented:**
+
+1. Secure User Authentication
+
+Implemented using Firebase Auth
+
+Supports login, signup, and logout
+
+Additional features:
+
+Show/hide password toggle
+
+Forgot password reset via email
+
+Confirm password during signup
+
+
+2. User Profile Management
+
+Users can create and update their profiles
+
+Fields include:
+
+Name
+
+Bio
+
+Profile Picture (via Cloudinary)
+
+Gender
+
+Date of Birth
+
+
+“My Profile” button on feed for direct access
+
+
+3. Post Creation with Media Support
+
+Users can publish posts containing:
+
+Text
+
+Images (Cloudinary upload integrated)
+
+
+Posts saved with timestamps and author details
+
+
+4. Global Feed View
+
+Displays all posts from all users
+
+Each post shows:
+
+Content
+
+Optional image
+
+Timestamp
+
+“Posted by” with correct username
+
+Total claps (likes)
+
+
+5. Post Reactions (Claps)
+
+Inspired by Medium’s clap system
+
+Users can clap multiple times
+
+Only total number of claps is stored—no user tracking
+
+
+6. Responsive Design
+
+Optimized UI/UX for both desktop and mobile devices
+
+Clean, and user-friendly layout
+
+
+7. Real-Time Updates
+
+Feed and post data update live using Firestore's snapshot listeners
