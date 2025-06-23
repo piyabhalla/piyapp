@@ -1,9 +1,8 @@
-   #PIYAPP
 
-***Piyapp*** is a simplified social media web application. It allows users to sign up, log in, create and view posts, like posts (multiple times like Medium's clap), and manage personal profiles with images and bios. The app is fully responsive, optimized for both desktop and mobile devices, and integrates real-time features using Firebase and Cloudinary.
+***Piyapp*** is a simplified social media web application. It allows users to sign up, log in, create and view posts(text and images), like posts (multiple times like Medium's clap), and manage personal profiles with images and bios. The app is fully responsive, optimized for both desktop and mobile devices, and integrates real-time features using Firebase and Cloudinary.
 
 
-**➡️Project Setup Instructions:**
+#➡️Project Setup Instructions:
 
 1. Clone the repo:
 git clone https://github.com/piyabhalla/piyapp.git and cd piyapp
@@ -22,6 +21,7 @@ Create a .env.local file and add Firebase credentials.
 
 6. Start the app locally:
 Run npm run dev to launch the development server.
+
 
 **➡️Technologies Used:**
 
@@ -95,3 +95,16 @@ Run npm run dev to launch the development server.
 7. Real-Time Updates
 
    •Feed and post data update live using Firestore's snapshot listeners
+   
+
+**➡️Limitations / Known Issues:**
+
+1. Users cannot edit or delete their posts after publishing.
+
+2. No email verification is implemented post sign-up.
+
+3. All posts are globally visible without user-specific filtering (no access control).
+
+4. Errors are shown via basic alerts without detailed debugging.
+
+
