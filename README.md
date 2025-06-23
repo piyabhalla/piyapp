@@ -50,31 +50,30 @@ Run npm run dev to launch the development server.
 
    •Additional features:
 
-    →Show/hide password toggle
+     →Show/hide password toggle
   
-    →Forgot password reset via email
+     →Forgot password reset via email
   
-    →Confirm password during signup
+     →Confirm password during signup
 
 
 2. User Profile Management
 
-Users can create and update their profiles
+   •Users can create and update their profiles
 
-Fields include:
+   •Fields include:
 
-Name
+     →Name
 
-Bio
+     →Bio
 
-Profile Picture (via Cloudinary)
+     →Profile Picture (via Cloudinary)
 
-Gender
+     →Gender
 
-Date of Birth
+     →Date of Birth
 
-
-“My Profile” button on feed for direct access
+     →“My Profile” button on feed for direct access
 
 
 3. Post Creation with Media Support
