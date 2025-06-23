@@ -14,6 +14,7 @@ import {
   getDocs,
 } from 'firebase/firestore';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
 
 export default function FeedPage() {
   const [user, setUser] = useState(null);
@@ -21,14 +22,14 @@ export default function FeedPage() {
   const [postText, setPostText] = useState('');
   const [postImage, setPostImage] = useState(null);
   const [posts, setPosts] = useState([]);
-  const [emailNameMap, setEmailNameMap] = useState({});
+  const router = useRouter();
 
-  // ✅ Get logged-in user + fetch name from Firestore
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setUser(user);
         let fetchedName = '';
+
         const q = query(collection(db, 'profiles'), where('email', '==', user.email));
         const snapshot = await getDocs(q);
 
@@ -45,32 +46,14 @@ export default function FeedPage() {
     return () => unsubscribe();
   }, []);
 
-  // ✅ Fetch all posts and build email:name map
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'posts'), async (snapshot) => {
+    const unsubscribe = onSnapshot(collection(db, 'posts'), (snapshot) => {
       const allPosts = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
-
       const sorted = allPosts.sort((a, b) => b.timestamp?.seconds - a.timestamp?.seconds);
       setPosts(sorted);
-
-      // Extract unique emails
-      const uniqueEmails = [...new Set(sorted.map((p) => p.email))];
-
-      // Fetch profile names
-      const nameMap = {};
-      for (const email of uniqueEmails) {
-        const q = query(collection(db, 'profiles'), where('email', '==', email));
-        const snap = await getDocs(q);
-        if (!snap.empty) {
-          nameMap[email] = snap.docs[0].data().name;
-        } else {
-          nameMap[email] = email;
-        }
-      }
-      setEmailNameMap(nameMap);
     });
 
     return () => unsubscribe();
@@ -100,7 +83,6 @@ export default function FeedPage() {
       claps: 0,
       timestamp: serverTimestamp(),
       user: name || 'Anonymous',
-      email: user?.email || '',
       image: imageUrl,
     });
 
@@ -123,21 +105,37 @@ export default function FeedPage() {
 
   return (
     <div style={{ padding: '2rem', backgroundColor: '#f0f4f8', minHeight: '100vh' }}>
-      <button
-        onClick={handleLogout}
-        style={{
-          backgroundColor: '#ef4444',
-          color: '#fff',
-          border: 'none',
-          padding: '0.6rem 1.2rem',
-          borderRadius: '6px',
-          cursor: 'pointer',
-          marginBottom: '1.5rem',
-          fontWeight: 'bold',
-        }}
-      >
-        🔒 Logout
-      </button>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
+        <button
+          onClick={handleLogout}
+          style={{
+            backgroundColor: '#ef4444',
+            color: '#fff',
+            border: 'none',
+            padding: '0.6rem 1.2rem',
+            borderRadius: '6px',
+            cursor: 'pointer',
+            fontWeight: 'bold',
+          }}
+        >
+          🔒 Logout
+        </button>
+
+        <button
+          onClick={() => router.push('/profile')}
+          style={{
+            backgroundColor: '#10b981',
+            color: '#fff',
+            border: 'none',
+            padding: '0.6rem 1.2rem',
+            borderRadius: '6px',
+            cursor: 'pointer',
+            fontWeight: 'bold',
+          }}
+        >
+          🙋‍♀ My Profile
+        </button>
+      </div>
 
       <h2 style={{ fontSize: '1.6rem', color: '#4b0082' }}>✨ What’s on your mind?</h2>
       <textarea
