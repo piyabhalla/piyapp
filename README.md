@@ -13,7 +13,7 @@ Run npm install to install all required packages.
 Configure Firebase Auth (Email/Password), Firestore with profiles & posts collections.
 
 4. Cloudinary integration:
-Create an unsigned preset (e.g., piyapppp) for image uploads.
+Create an unsigned preset for image uploads.
 
 5. Add environment variables:
 Create a .env.local file and add Firebase credentials.
@@ -21,7 +21,7 @@ Create a .env.local file and add Firebase credentials.
 6. Start the app locally:
 Run npm run dev to launch the development server.
 
-**2. Technologies Used:**
+**Technologies Used:**
 
 1. Next.js 15.3.4 – Frontend framework
 
