@@ -50,9 +50,11 @@ Run npm run dev to launch the development server.
 
    •Additional features:
 
-  Show/hide password toggle
-  Forgot password reset via email
-  Confirm password during signup
+    →Show/hide password toggle
+  
+    →Forgot password reset via email
+  
+    →Confirm password during signup
 
 
 2. User Profile Management
