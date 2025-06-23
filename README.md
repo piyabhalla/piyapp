@@ -2,7 +2,7 @@
 
 ### **Piyapp** is a full-stack simplified social media web application. It allows users to sign up, log in, create and view posts (text and images), like posts (multiple times like Medium's clap), manage personal profiles with avatars or profile image uploads, and delete posts. The app is fully responsive, optimized for both desktop and mobile devices, and integrates real-time features using *Firebase* and *Cloudinary*.
 
-🔗 ###  https://piyapp.vercel.app
+🔗 https://piyapp.vercel.app
 
 ---
 
