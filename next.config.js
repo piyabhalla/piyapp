@@ -1,6 +1,7 @@
+// next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  // output: 'export', // ❌ REMOVE THIS
 };
 
 module.exports = nextConfig;
