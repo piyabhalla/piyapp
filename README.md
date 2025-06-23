@@ -1,4 +1,4 @@
-#PIYAPP
+   #PIYAPP
 
 ***Piyapp*** is a simplified social media web application. It allows users to sign up, log in, create and view posts, like posts (multiple times like Medium's clap), and manage personal profiles with images and bios. The app is fully responsive, optimized for both desktop and mobile devices, and integrates real-time features using Firebase and Cloudinary.
 
